@@ -1,5 +1,4 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import React from "preact/compat";
 import { RiErrorWarningFill } from "react-icons/ri";
 
 type Inputs = {
