@@ -1,0 +1,34 @@
+{
+    "tasks": [
+        {
+            "id": 1,
+            "title": "Wepro project",
+            "status": "ready",
+            "description": "To make web app for Wepro"
+        },
+        {
+            "id": 2,
+            "title": "ES project",
+            "status": "inprocess",
+            "description": "To make web app for Language center"
+        },
+        {
+            "id": 3,
+            "title": "Own project",
+            "status": "waiting",
+            "description": "To make web app for Myself"
+        },
+        {
+            "id": 4,
+            "title": "Omad project",
+            "status": "ready",
+            "description": "To make web app for OMAD"
+        },
+        {
+            "id": 5,
+            "title": "AUE project",
+            "status": "waiting",
+            "description": "To make web app for Gunsters"
+        }
+    ]
+}
