@@ -6,8 +6,6 @@ interface TaskLenghtProps {
 
 export const TaskLength: React.FC<TaskLenghtProps> = ({TaskCount}) => {
     return (
-        <h1 className={"font-semibold text-3xl pb-[30px]"}>
-            Todo list contains overall {TaskCount} task(s)
-        </h1>
+        <h1 className={"font-semibold text-3xl pb-[30px]"}> Todo list contains overall {TaskCount} task(s)</h1>
     )
 }

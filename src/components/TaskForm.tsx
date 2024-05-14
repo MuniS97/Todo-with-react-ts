@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { RiErrorWarningFill } from "react-icons/ri";
-// import {v4 as uuidv4} from "uuid"
+import {v4 as uuidv4} from "uuid"
 
 type Inputs = {
   task: string;
@@ -8,6 +8,7 @@ type Inputs = {
 };
 
 export function TaskForm() {
+  const baseUrl = import.meta.env.VITE_BASE_URL
   const {
     register,
     handleSubmit,
@@ -16,7 +17,20 @@ export function TaskForm() {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+    fetch(baseUrl + "/tasks", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      body: JSON.stringify({...data, id: uuidv4()})
+    }).then(res => {
+      if(res?.ok) {
+        console.log(res);
+      } else {
+        console.log('Smth went wrong');
+      }
+    })
   };
 
 //   console.log(watch("task"));
