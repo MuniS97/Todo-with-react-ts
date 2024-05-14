@@ -16,6 +16,7 @@ export const TaskRender: React.FC<TaskRenderProps> = ({
   Checked,
 }) => {
 
+
   return (
     <div
       className={
@@ -48,7 +49,10 @@ export const TaskRender: React.FC<TaskRenderProps> = ({
         <button className={"cursor-pointer"}>
           <TbEdit size={22} color="blue"/>
         </button>
-        <button className={"cursor-pointer"}>
+        <button
+        
+          className={"cursor-pointer"}
+          >
           <RiDeleteBin6Line size={22} color="red"/>
         </button>
       </div>
