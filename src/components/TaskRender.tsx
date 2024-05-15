@@ -9,13 +9,13 @@ interface TaskRenderProps {
   Id: string;
 }
 
-
 export const TaskRender: React.FC<TaskRenderProps> = ({
   Task,
   Description,
   Checked,
+  Id,
 }) => {
-
+  const baseUrl = import.meta.env.VITE_BASE_URL;
 
   return (
     <div
@@ -47,13 +47,29 @@ export const TaskRender: React.FC<TaskRenderProps> = ({
       )}
       <div className={"w-full h-full flex items-end justify-end gap-1"}>
         <button className={"cursor-pointer"}>
-          <TbEdit size={22} color="blue"/>
+          <TbEdit size={22} color="blue" />
         </button>
-        <button
-        
+        <button 
+          onClick={() => {            
+            const request = window.confirm("Are u sure that I wanna delete with task")
+            if(request) {
+              fetch(baseUrl + "/tasks/" + Id, {
+                method: "DELETE"
+              })
+                .then((res) => {
+                  if(res.status !== 200 && res.status !== 201) {
+                    console.log("Smth went wrong, try again please! ))");
+                  } else {
+                    setTimeout(() => {
+                      alert("Done!!")
+                    }, 1000);
+                  }
+                });
+            }
+          }}
           className={"cursor-pointer"}
-          >
-          <RiDeleteBin6Line size={22} color="red"/>
+        >
+          <RiDeleteBin6Line size={22} color="red" />
         </button>
       </div>
     </div>

@@ -12,6 +12,7 @@ export function TaskForm() {
   const {
     register,
     handleSubmit,
+    reset,
     // watch,
     formState: { errors },
   } = useForm<Inputs>();
@@ -26,7 +27,10 @@ export function TaskForm() {
       body: JSON.stringify({...data, id: uuidv4()})
     }).then(res => {
       if(res?.ok) {
-        console.log(res);
+        setTimeout(() => {
+          alert("Done!!")
+          reset()
+        }, 1000);
       } else {
         console.log('Smth went wrong');
       }
