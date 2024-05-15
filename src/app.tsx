@@ -13,7 +13,7 @@ interface ITask {
 
 export function App() {
   const baseUrl = import.meta.env.VITE_BASE_URL;
-  const [tasks, setTasks] = React.useState<ITask[]>([]);
+  const [tasks, setTasks] = React.useState<ITask[]>([]);  
 
   React.useEffect(() => {
     fetch(baseUrl + "/tasks").then(res => res.json()).then(res => {

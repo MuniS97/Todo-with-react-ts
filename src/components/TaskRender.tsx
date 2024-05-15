@@ -46,12 +46,17 @@ export const TaskRender: React.FC<TaskRenderProps> = ({
         <p className={"font-normal text-sm"}>{Description}</p>
       )}
       <div className={"w-full h-full flex items-end justify-end gap-1"}>
-        <button className={"cursor-pointer"}>
+        <button 
+          onClick={() => {
+
+          }}
+          className={"cursor-pointer"}
+        >
           <TbEdit size={22} color="blue" />
         </button>
         <button 
           onClick={() => {            
-            const request = window.confirm("Are u sure that I wanna delete with task")
+            const request = window.confirm("Are u sure that I wanna delete this task")
             if(request) {
               fetch(baseUrl + "/tasks/" + Id, {
                 method: "DELETE"
@@ -62,7 +67,7 @@ export const TaskRender: React.FC<TaskRenderProps> = ({
                   } else {
                     setTimeout(() => {
                       alert("Done!!")
-                    }, 1000);
+                    }, 500);
                   }
                 });
             }

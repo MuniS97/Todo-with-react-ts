@@ -1,6 +1,8 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { RiErrorWarningFill } from "react-icons/ri";
 import {v4 as uuidv4} from "uuid"
+import { UpdateContext } from "../contexts/UpdateCTX";
+import React from "preact/compat"
 
 type Inputs = {
   task: string;
@@ -9,6 +11,7 @@ type Inputs = {
 
 export function TaskForm() {
   const baseUrl = import.meta.env.VITE_BASE_URL
+
   const {
     register,
     handleSubmit,
@@ -30,7 +33,7 @@ export function TaskForm() {
         setTimeout(() => {
           alert("Done!!")
           reset()
-        }, 1000);
+        }, 500);
       } else {
         console.log('Smth went wrong');
       }
