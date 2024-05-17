@@ -17,7 +17,6 @@ export function App() {
   const baseUrl = import.meta.env.VITE_BASE_URL;
   const [tasks, setTasks] = React.useState<ITask[]>([]); 
   const [update, setUpdate] = React.useState<boolean>(false)
-  const [value, setValue] = React.useState<string>("")
 
   React.useEffect(() => {
     fetch(baseUrl + "/tasks").then(res => res.json()).then(res => {

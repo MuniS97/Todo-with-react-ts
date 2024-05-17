@@ -6,6 +6,7 @@ type Inputs = {
   task: string;
   description: string;
 };
+
 interface TaskFormProps {
   setUpdate: (arg: boolean) => void;
   update: boolean;
@@ -13,7 +14,7 @@ interface TaskFormProps {
 
 export const TaskForm: React.FC<TaskFormProps> = ({
   setUpdate,
-  update
+  update,
 }) => {
   const baseUrl = import.meta.env.VITE_BASE_URL;
 
