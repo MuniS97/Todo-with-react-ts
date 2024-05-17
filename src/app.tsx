@@ -9,17 +9,21 @@ interface ITask {
   task: string
   description: string
   checked: boolean
+  update: boolean
+  setUpdate: (arg: boolean) => void
 }
 
 export function App() {
   const baseUrl = import.meta.env.VITE_BASE_URL;
-  const [tasks, setTasks] = React.useState<ITask[]>([]);  
+  const [tasks, setTasks] = React.useState<ITask[]>([]); 
+  const [update, setUpdate] = React.useState<boolean>(false)
+  const [value, setValue] = React.useState<string>("")
 
   React.useEffect(() => {
     fetch(baseUrl + "/tasks").then(res => res.json()).then(res => {
         setTasks(res) 
     })
-  }, []);
+  }, [update]);
 
   return (
     <>
@@ -30,7 +34,7 @@ export function App() {
       >
         {<TaskLength TaskCount={tasks?.length} />}
 
-        {<TaskForm />}
+        {<TaskForm update={update} setUpdate={setUpdate}/>}
       </div>
 
       <div
@@ -41,7 +45,7 @@ export function App() {
         {tasks.length ? (
             
             tasks.map((item: ITask) => (
-                <TaskRender Id={item.id} Checked={item.checked} Description={item.description} Task={item.task}/>
+                <TaskRender update={update} setUpdate={setUpdate} Id={item.id} Checked={item.checked} Description={item.description} Task={item.task}/>
             ))
              ) : <span>Loading.....</span>}
       </div>

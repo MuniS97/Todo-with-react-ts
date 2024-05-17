@@ -7,6 +7,8 @@ interface TaskRenderProps {
   Description: string;
   Checked: boolean;
   Id: string;
+  update: boolean;
+  setUpdate: (arg: boolean) => void;
 }
 
 export const TaskRender: React.FC<TaskRenderProps> = ({
@@ -14,8 +16,10 @@ export const TaskRender: React.FC<TaskRenderProps> = ({
   Description,
   Checked,
   Id,
+  update,
+  setUpdate,
 }) => {
-  const baseUrl = import.meta.env.VITE_BASE_URL;
+  const baseUrl = import.meta.env.VITE_BASE_URL;  
 
   return (
     <div
@@ -46,30 +50,25 @@ export const TaskRender: React.FC<TaskRenderProps> = ({
         <p className={"font-normal text-sm"}>{Description}</p>
       )}
       <div className={"w-full h-full flex items-end justify-end gap-1"}>
-        <button 
-          onClick={() => {
-
-          }}
-          className={"cursor-pointer"}
-        >
+        <button onClick={() => {}} className={"cursor-pointer"}>
           <TbEdit size={22} color="blue" />
         </button>
-        <button 
-          onClick={() => {            
-            const request = window.confirm("Are u sure that I wanna delete this task")
-            if(request) {
+        <button
+          onClick={() => {
+            const request = window.confirm(
+              "Are u sure that I wanna delete this task"
+            );
+            if (request) {
               fetch(baseUrl + "/tasks/" + Id, {
-                method: "DELETE"
-              })
-                .then((res) => {
-                  if(res.status !== 200 && res.status !== 201) {
-                    console.log("Smth went wrong, try again please! ))");
-                  } else {
-                    setTimeout(() => {
-                      alert("Done!!")
-                    }, 500);
-                  }
-                });
+                method: "DELETE",
+              }).then((res) => {
+                if (res.status !== 200 && res.status !== 201) {
+                  console.log("Smth went wrong, try again please! ))");
+                } else {
+                  alert("Done!!");
+                  setUpdate(!update);
+                }
+              });
             }
           }}
           className={"cursor-pointer"}

@@ -1,15 +1,21 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { RiErrorWarningFill } from "react-icons/ri";
-import {v4 as uuidv4} from "uuid"
-
+import { v4 as uuidv4 } from "uuid";
 
 type Inputs = {
   task: string;
   description: string;
 };
+interface TaskFormProps {
+  setUpdate: (arg: boolean) => void;
+  update: boolean;
+}
 
-export function TaskForm() {
-  const baseUrl = import.meta.env.VITE_BASE_URL
+export const TaskForm: React.FC<TaskFormProps> = ({
+  setUpdate,
+  update
+}) => {
+  const baseUrl = import.meta.env.VITE_BASE_URL;
 
   const {
     register,
@@ -23,23 +29,22 @@ export function TaskForm() {
     fetch(baseUrl + "/tasks", {
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       method: "POST",
-      body: JSON.stringify({...data, id: uuidv4()})
-    }).then(res => {
-      if(res?.ok) {
-        setTimeout(() => {
-          alert("Done!!")
-          reset()
-        }, 500);
+      body: JSON.stringify({ ...data, id: uuidv4() }),
+    }).then((res) => {
+      if (res?.ok) {
+        alert("Done!!");
+        reset();
+        setUpdate(!update);
       } else {
-        console.log('Smth went wrong');
+        console.log("Smth went wrong");
       }
-    })
+    });
   };
 
-//   console.log(watch("task"));
+  //   console.log(watch("task"));
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -97,4 +102,4 @@ export function TaskForm() {
       />
     </form>
   );
-}
+};
